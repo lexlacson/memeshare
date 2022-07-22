@@ -1,11 +1,11 @@
 const main = async () => {
-  const waveContractFactory = await hre.ethers.getContractFactory("WavePortal");
-  const waveContract = await waveContractFactory.deploy({
+  const contractFactory = await hre.ethers.getContractFactory("MemeShare");
+  const contract = await contractFactory.deploy({
     value: hre.ethers.utils.parseEther("0.0001"),
   });
-  await waveContract.deployed();
+  await contract.deployed();
 
-  console.log("WavePortal address: ", waveContract.address);
+  console.log("contract address: ", contract.address);
 };
 
 const runMain = async () => {

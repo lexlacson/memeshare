@@ -1,43 +1,43 @@
 const main = async () => {
-  const waveContractFactory = await hre.ethers.getContractFactory("WavePortal");
-  const waveContract = await waveContractFactory.deploy({
+  const contractFactory = await hre.ethers.getContractFactory("MemeShare");
+  const contract = await contractFactory.deploy({
     value: hre.ethers.utils.parseEther("0.0001"),
   });
-  await waveContract.deployed();
-  console.log("Contract addy:", waveContract.address);
+  await contract.deployed();
+  console.log("Contract addy:", contract.address);
 
   let contractBalance = await hre.ethers.provider.getBalance(
-    waveContract.address
+    contract.address
   );
   console.log(
     "Contract balance:",
     hre.ethers.utils.formatEther(contractBalance)
   );
 
-  let waveCount;
-  waveCount = await waveContract.getTotalWaves();
-  console.log(waveCount.toNumber());
+  let memeCount;
+  memeCount = await contract.getTotalMemes();
+  console.log(memeCount.toNumber());
 
-  let waveTxn = await waveContract.wave("A message!");
-  await waveTxn.wait();
-  waveTxn = await waveContract.wave("B message!");
-  await waveTxn.wait();
-  waveTxn = await waveContract.wave("C message");
-  await waveTxn.wait();
+  let memeTxn = await contract.meme("A message!");
+  await memeTxn.wait();
+  memeTxn = await contract.meme("B message!");
+  await memeTxn.wait();
+  memeTxn = await contract.meme("C message");
+  await memeTxn.wait();
 
-  waveCount = await waveContract.getTotalWaves();
+  memeCount = await contract.getTotalMemes();
 
   const [_, randomPerson] = await hre.ethers.getSigners();
-  waveTxn = await waveContract.connect(randomPerson).wave("Another message!");
+  memeTxn = await contract.connect(randomPerson).meme("Another message!");
 
-  contractBalance = await hre.ethers.provider.getBalance(waveContract.address);
+  contractBalance = await hre.ethers.provider.getBalance(contract.address);
   console.log(
     "Contract balance:",
     hre.ethers.utils.formatEther(contractBalance)
   );
 
-  let allWaves = await waveContract.getAllWaves();
-  console.log(allWaves);
+  let allMemes = await contract.getAllMemes();
+  console.log(allMemes);
 };
 
 const runMain = async () => {
