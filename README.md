@@ -2,6 +2,7 @@
 
 I created a basic web3 app to share memes and add them to the Ethereum blockchain. This repo contains the smart contract. This is what the react app looks like that connects to the smart contract:
 
+![app2](https://github.com/lexlacson/memeshare/blob/main/app2.png)
 ![app](https://github.com/lexlacson/memeshare/blob/main/app.png)
 
 
