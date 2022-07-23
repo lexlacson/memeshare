@@ -13,6 +13,7 @@ This is a hardhat project.
 Some test commands:
 ```shell
 npx hardhat run scripts/run.js
+npx hardhat run scripts/deploy.js --network localhost
 npx hardhat run scripts/deploy.js --network rinkeby
 ```
 
